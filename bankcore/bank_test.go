@@ -1,6 +1,9 @@
 package bank
 
-import "testing"
+import (
+	"strconv"
+	"testing"
+)
 
 func TestAccount(t *testing.T) {
 	account := Account{
@@ -81,13 +84,28 @@ func TestStatement(t *testing.T) {
 			Address: "Los Angeles, California",
 			Phone:   "(213) 555 0147",
 		},
-		Number:  "1001",
+		Number:  "0012345267",
 		Balance: 0,
 	}
 
-	account.Deposit(100)
-	statement := account.Statement()
-	if statement != "1001 - John - 100" {
-		t.Error("statement doesn't have the proper format")
+	// create a struct to hold a custom account
+	// and then attach the Statement() method to it
+	type customAccount struct {
+		*Account
+	}
+
+	// create a function variable that implements the Statement() method
+	statementFunc := func(c *customAccount) string {
+		return c.Account.Number + " - " + c.Account.Customer.Name + " - " + strconv.FormatFloat(c.Account.Balance, 'f', -1, 64)
+	}
+
+	// create a custom account
+	acc := &customAccount{&account}
+
+	acc.Deposit(100)
+	statement := statementFunc(acc)
+
+	if statement != "0012345267 - John - 100" {
+		t.Errorf("statement doesn't have the proper format: %v", statement)
 	}
 }

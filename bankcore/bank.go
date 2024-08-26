@@ -1,12 +1,11 @@
 package bank
 
 import (
-	"encoding/json"
 	"errors"
 )
 
 // Create an interface with a Statement() string function.
-type Statementer interface {
+type Bank interface {
 	Statement() string
 }
 
@@ -72,8 +71,6 @@ func (a *Account) Transfer(to *Account, amount float64) error {
 }
 
 // Statement ...
-func (a *Account) Statement(s Statementer) string {
-
-	statementJSON, _ := json.Marshal(s.Statement())
-	return string(statementJSON)
+func Statement(b Bank) string {
+	return string(b.Statement())
 }
