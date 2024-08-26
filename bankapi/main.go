@@ -22,5 +22,6 @@ func main() {
 
 	http.HandleFunc("/statement", statement)
 	http.HandleFunc("/deposit", deposit)
+	http.HandleFunc("/withdraw", withdraw)
 	log.Fatal(http.ListenAndServe("localhost:8000", nil))
 }

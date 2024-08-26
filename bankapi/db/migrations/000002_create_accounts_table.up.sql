@@ -1,4 +1,4 @@
-CREATE TABLE accounts (
+CREATE TABLE `accounts` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `user_id` INT NOT NULL,
     `account_number` VARCHAR(10) NOT NULL,
@@ -8,5 +8,6 @@ CREATE TABLE accounts (
     `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     CONSTRAINT FK_UserAccount FOREIGN KEY (`user_id`) REFERENCES users(`id`)
     ON DELETE CASCADE  
-    ON UPDATE CASCADE  
+    ON UPDATE CASCADE,
+    UNIQUE (`account_number`)
 );

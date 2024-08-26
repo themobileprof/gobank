@@ -42,12 +42,12 @@ func TestInsertAccount(t *testing.T) {
 	// Create a new account
 	accounts := &bank.Account{
 		Customer: bank.Customer{
-			Name:    "John Doe",
-			Email:   "john@gmail.com",
+			Name:    "Jane Doe",
+			Email:   "jane@gmail.com",
 			Phone:   "(213) 555 0147",
 			Address: "Los Angeles, California",
-			Gender:  "Male",
-			DoB:     "1983-10-10",
+			Gender:  "Female",
+			DoB:     "2003-01-01",
 		},
 		Number:  "0017286376",
 		Balance: 0.00,
@@ -60,7 +60,7 @@ func TestInsertAccount(t *testing.T) {
 	}
 
 	// Check if the account is created
-	if accounts.Name != "John Doe" {
+	if accounts.Name != "Jane Doe" {
 		t.Error("account not created")
 	}
 
@@ -82,14 +82,14 @@ func TestGetAccountByNumber(t *testing.T) {
 	// Create a new account
 	accounts := &bank.Account{
 		Customer: bank.Customer{
-			Name:    "John Doe",
-			Email:   "john@gmail.com",
-			Phone:   "(213) 555 0147",
-			Address: "Los Angeles, California",
+			Name:    "Sam Song",
+			Email:   "samuel@gmail.com",
+			Phone:   "(803) 555 0147",
+			Address: "Lagos, Nigeria",
 			Gender:  "Male",
 			DoB:     "1983-10-10",
 		},
-		Number:  "0017286376",
+		Number:  "0018989351",
 		Balance: 0.00,
 	}
 

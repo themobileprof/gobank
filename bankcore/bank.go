@@ -1,9 +1,14 @@
 package bank
 
 import (
+	"encoding/json"
 	"errors"
-	"fmt"
 )
+
+// Create an interface with a Statement() string function.
+type Statementer interface {
+	Statement() string
+}
 
 // Customer ...
 type Customer struct {
@@ -51,7 +56,24 @@ func (a *Account) Withdraw(amount float64) error {
 	return nil
 }
 
+// Transfer ...
+func (a *Account) Transfer(to *Account, amount float64) error {
+	if amount <= 0 {
+		return errors.New("the amount to transfer should be greater than zero")
+	}
+
+	if a.Balance < amount {
+		return errors.New("insufficient balance to transfer")
+	}
+
+	a.Balance -= amount
+	to.Balance += amount
+	return nil
+}
+
 // Statement ...
-func (a *Account) Statement() string {
-	return fmt.Sprintf("%v - %v - %v", a.Number, a.Name, a.Balance)
+func (a *Account) Statement(s Statementer) string {
+
+	statementJSON, _ := json.Marshal(s.Statement())
+	return string(statementJSON)
 }

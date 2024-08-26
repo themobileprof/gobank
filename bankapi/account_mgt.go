@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"strconv"
+	"time"
 
 	"github.com/themobileprof/bank"
 	"github.com/themobileprof/db"
@@ -19,6 +20,7 @@ import (
 func createAccount(accounts *bank.Account) (*bank.Account, error) {
 
 	// Generate a random 10 digits account number that starts with 001
+	rand.Seed(uint64(time.Now().UnixNano()))
 	accountNumber := "001" + strconv.Itoa(rand.Intn(9000000)+1000000)
 
 	*accounts = bank.Account{
