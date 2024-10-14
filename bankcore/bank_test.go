@@ -5,6 +5,7 @@ import (
 	"testing"
 )
 
+// Test account
 func TestAccount(t *testing.T) {
 	account := Account{
 		Customer: Customer{
@@ -21,6 +22,7 @@ func TestAccount(t *testing.T) {
 	}
 }
 
+// Test Deposit
 func TestDeposit(t *testing.T) {
 	account := Account{
 		Customer: Customer{

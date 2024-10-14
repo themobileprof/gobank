@@ -9,7 +9,7 @@ type Bank interface {
 	Statement() string
 }
 
-// Customer ...
+// Customer struct ...
 type Customer struct {
 	Name    string
 	Email   string
@@ -26,7 +26,7 @@ type Account struct {
 	Balance float64
 }
 
-// Welcome
+// Welcome placeholder function
 func Welcome() string {
 	return "Welcome!"
 }
